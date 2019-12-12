@@ -6,7 +6,7 @@ public static void main(String[] args){
 	location /*Stores the location of the last square the player clicked*/,
 	squaresLeft /*Stores the number of blank squares left*/;
 	int[] inputAndLocation /*Stores the variables userInput and location*/;
-	GridSquare[][] mineField;
+	GridSquare[][] mineField = new GridSquare[20][20];
 	
 	//Create the grid
 	length = 20;

@@ -11,8 +11,6 @@ public class GridSquare {
 	//Default constructor
 	public GridSquare(){
 		this.bomb = false;
-		this.squareLength = 50;
-		this.squareWidth = 50;
 	}
 	
 	//Constructor
@@ -45,4 +43,12 @@ public class GridSquare {
 	public void show() {
 		this.shown = true;
 	}
+
+  public void changeLength(int squareLength){
+    this.squareLength = squareLength;
+  }
+  
+  public void changeWidth(int squareWidth){
+    this.squareWidth = squareWidth;
+  }
 }
