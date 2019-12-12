@@ -12,7 +12,7 @@ public static void main(String[] args){
 	length = 20;
 	width = 20;
 	numBombs = 30
-	mineField = makeGrid(mineField, length, width, numBombs); //Done
+	mineField = makeGrid(mineField, length, width, numBombs);
 	squaresLeft = length * width;
 	
 	//Loop through and run game logic
