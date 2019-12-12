@@ -1,4 +1,5 @@
 //Takes the GridSquare[][] mineField, the user input, and location of input and returns a String either saying "lose" or "safe".
+public class GetResult() {
 	public GetResult() {
 		super();
 	}
