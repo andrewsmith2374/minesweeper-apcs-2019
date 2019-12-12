@@ -20,6 +20,8 @@ public static void main(String[] args){
 		
 		//Run game logic on their choice
 		nextMove = getResult(mineField, userInput, location);
+		updateBoard(mineField, nextMove, userInput, location);
+		drawBoard(mineField);
 		
 		if(nextMove.equals("lost")) {
 			//End game
