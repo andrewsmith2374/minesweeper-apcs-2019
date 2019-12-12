@@ -1,15 +1,13 @@
 //Each individual square
 public class GridSquare {
 	//squareLength and squareWidth are how big the square will be in pixels
-	int squareLength = 0;
-	int squareWidth = 0;
+	int squareLength = 50;
+	int squareWidth = 50;
 	boolean bomb = false; //Status of the square, whether it is a bomb or not
 	
 	//Default constructor
 	public GridSquare(){
 		this.bomb = false;
-		this.squareLength = 50;
-		this.squareWidth = 50;
 	}
 	
 	public GridSquare(boolean bomb, int squareLength, int squareWidth){//constructor
@@ -33,4 +31,13 @@ public class GridSquare {
 	public void changeBombStatus(boolean bomb){
 		this.bomb = bomb;
 	}
+
+  public void changeLength(int squareLength){
+    this.squareLength = squareLength;
+  }
+  
+  public void changeWidth(int squareWidth){
+    this.squareWidth = squareWidth;
+  }
+
 }

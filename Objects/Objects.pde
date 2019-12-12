@@ -12,10 +12,10 @@ public static void main(String[] args){
 	int userInput /*Store the user input as either 0 (step) or 1 (flag)*/,
 	location /*Stores the location of the last square the player clicked*/;
 	int[] inputAndLocation /*Stores the variables userInput and location*/;
-	GridSquare[][] mineField;
+	GridSquare[][] mineField = new GridSquare[20][20];
 	
 	//Create the grid
-	mineField = makeGrid(mineField, 20, 20, 30); //Done
+  mineField = Grid.makeGrid(mineField, 30); //Done
 	
 	//Loop through and run game logic
 	while(true) {
