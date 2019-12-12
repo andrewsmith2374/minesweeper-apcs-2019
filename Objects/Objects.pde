@@ -1,4 +1,11 @@
 import java.lang.*;
+void setup(){
+  size(1000, 1000);
+  fill(255, 204);
+}
+void draw(){
+  
+}
 public static void main(String[] args){
 	//Declare variables
 	String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
@@ -13,8 +20,7 @@ public static void main(String[] args){
 	length = 20;
 	width = 20;
 	numBombs = 30
-	mineField = new GridSquare[][];
-	mineField = makeGrid(length, width, numBombs); //Done
+	mineField = makeGrid(mineField, 20, 20, 30); //Done
 	squaresLeft = length * width;
 	
 	//Loop through and run game logic
