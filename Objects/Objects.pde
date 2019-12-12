@@ -9,7 +9,7 @@ public static void main(String[] args){
 	
 	//Create the grid
 	mineField = new GridSquare[length][width
-	mineField = makeGrid(20, 20, 30);
+	mineField = makeGrid(20, 20, 30); //Done
 	
 	//Loop through and run game logic
 	while(true) {
