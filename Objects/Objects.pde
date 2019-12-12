@@ -1,15 +1,21 @@
 import java.lang.*;
 public static void main(String[] args){
 	//Declare variables
-	String nextMove /*Stores the next move in the game, either "win", "lose", or "safe"*/;
-	int userInput /*Store the user input as either 0 (step) or 1 (flag)*/,
-	location /*Stores the location of the last square the player clicked*/;
+	String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
+	int length /*Length of the board*/, width /*Width of the board*/, numBombs /*Number of boms*/,
+	userInput /*Store the user input as either 0 (step) or 1 (flag)*/,
+	location /*Stores the location of the last square the player clicked*/,
+	squaresLeft /*Stores the number of blank squares left*/;
 	int[] inputAndLocation /*Stores the variables userInput and location*/;
 	GridSquare[][] mineField;
 	
 	//Create the grid
-	mineField = new GridSquare[length][width
-	mineField = makeGrid(20, 20, 30); //Done
+	length = 20;
+	width = 20;
+	numBombs = 30
+	mineField = new GridSquare[][];
+	mineField = makeGrid(length, width, numBombs); //Done
+	squaresLeft = length * width;
 	
 	//Loop through and run game logic
 	while(true) {
@@ -27,9 +33,9 @@ public static void main(String[] args){
 			//End game
 			gameOver(0);
 		}
-		else if(nextMove.equals("win")) {
+		else if(squaresLeft == 0) {
 			//End game
-			gameOver(1)
+			gameOver(1);
 		}
 	}
 }
