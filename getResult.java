@@ -1,13 +1,9 @@
 //Takes the GridSquare[][] mineField, the user input, and location of input and returns a String either saying "lose" or "safe".
 public class GetResult() {
-	public GetResult() {
-		super();
-	}
-	
 	public static String getResult(GridSquare[][] mineField, int input, int location) {
 		//Declare variables
 		int xCoord /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
-		GridSquare tile /*Individual mine*/
+		GridSquare tile /*Individual mine*/;
 	
 		//Get the x and y coordinates of the location
 		yCoord = location / mineField.length;

@@ -6,6 +6,7 @@ public class GridSquare {
 	int bombsNearby; //Number of bombs directly adjacent to this tile
 	
 	boolean bomb = false; //Status of the square, whether it is a bomb or not
+	boolean shown = false; //The shown state of the bomb
 	
 	//Default constructor
 	public GridSquare(){
@@ -22,22 +23,26 @@ public class GridSquare {
 	}
 	
 	public int getWidth(){
-		return squareWidth;
+		return this.squareWidth;
 	}
 	
 	public int getLength(){
-		return squareLength;
+		return this.squareLength;
 	}
 	
 	public int getBombsNearby() {
-		return bombsNearby;
+		return this.bombsNearby;
 	}
 	
 	public boolean getBombStatus(){
-		return bomb;
+		return this.bomb;
 	}
 	
 	public void changeBombStatus(boolean bomb){
 		this.bomb = bomb;
+	}
+	
+	public void show() {
+		this.shown = true;
 	}
 }
