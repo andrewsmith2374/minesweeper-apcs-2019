@@ -1,11 +1,3 @@
-import java.lang.*;
-void setup(){
-  size(1000, 1000);
-  fill(255, 204);
-}
-void draw(){
-  
-}
 public static void main(String[] args){
 	//Declare variables
 	String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
@@ -31,8 +23,13 @@ public static void main(String[] args){
 		location = inputAndLocation[1];
 		
 		//Run game logic on their choice
-		nextMove = getResult(mineField, userInput, location);
-		updateBoard(mineField, nextMove, userInput, location);
+		nextMove = getResult(mineField, userInput, location); //Done
+		if(nextMove = "safe") {
+			squaresLeft--;
+		}
+		
+		//Update board and return as mineField
+		mineField = updateBoard(mineField, nextMove, userInput, location);
 		drawBoard(mineField);
 		
 		if(nextMove.equals("lost")) {

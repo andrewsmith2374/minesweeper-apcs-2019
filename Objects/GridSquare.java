@@ -12,7 +12,8 @@ public class GridSquare {
 		this.squareWidth = 50;
 	}
 	
-	public GridSquare(boolean bomb, int squareLength, int squareWidth){//constructor
+	//Constructor
+	public GridSquare(boolean bomb, int squareLength, int squareWidth){
 		this.bomb = bomb;
 		this.squareLength = squareLength;
 		this.squareWidth = squareWidth;
