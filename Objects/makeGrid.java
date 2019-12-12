@@ -1,7 +1,5 @@
-//Generates a mineField, 20 by 20 out of object GridSquare
-public static void makeGrid(int length, int width, int numBombs) {
-	GridSquare[][] mineField = new GridSquare[length][width];
-	
+//Generates a mineField, 20 by 20 out of object GridSquare, returns as GridSquare[][]
+public static GridSquare[][] makeGrid(GridSquare[][] mineField; int length, int width, int numBombs) {
 	//randomly setting numBombs squares to be bombs
 	for(int i = 0; i < numBombs; i++){
 		boolean test = true;
@@ -26,4 +24,5 @@ public static void makeGrid(int length, int width, int numBombs) {
 			}
 		}
 	}
+	return mineField;
 }
