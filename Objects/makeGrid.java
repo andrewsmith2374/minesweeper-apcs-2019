@@ -1,7 +1,7 @@
 import java.util.Random;
 
 //Generates a mineField, 20 by 20 out of object GridSquare, returns as GridSquare[][]
-public class MakeGrid {
+public class makeGrid {
 	public static GridSquare[][] makeGrid(GridSquare[][] mineField, int numBombs) {
 		//Declare variables
 		GridSquare tile /*Individual mine*/;

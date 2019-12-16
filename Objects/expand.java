@@ -1,5 +1,5 @@
 //Goes through adjacent tiles and looks for tiles with no bombs nearby
-public class Expand {
+public class expand {
 	public static void expand(GridSquare[][] mineField, int location) {
 		//Declare variables
 		int startingX /*The starting column*/, endingX /*The ending column*/, startingY/*The starting row*/, endingY /*The ending row*/,

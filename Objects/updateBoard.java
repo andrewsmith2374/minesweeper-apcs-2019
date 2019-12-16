@@ -1,5 +1,5 @@
 //Update board with inputs mineField, nextMove, userInput, location and return as updated mineField
-public class UpdateBoard {
+public class updateBoard {
 	public static GridSquare[][] updateBoard(GridSquare[][] mineField, String nextMove, int userInput, int location) {
 		int xCoord /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
 		GridSquare tile /*Individual mine*/;
@@ -12,7 +12,7 @@ public class UpdateBoard {
 		tile = mineField[yCoord][xCoord];
 		
 		if(tile.getBombsNearby() == 0) {
-			Expand.expand(mineField, location);
+			expand.expand(mineField, location);
 		}
 		else {
 			tile.show();
