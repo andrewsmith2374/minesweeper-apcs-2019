@@ -11,10 +11,17 @@ public static void main(String[] args){
 	//Create the grid
 	length = 20;
 	width = 20;
-	numBombs = 30
-	mineField = makeGrid(mineField, length, width, numBombs); //Done?
+	numBombs = 30;
+	mineField = MakeGrid.makeGrid(mineField, numBombs); //Done?
 	squaresLeft = length * width;
+
+  for(int i = 0; i < mineField.length; i++) {
+    for(int j = 0; j < mineField[i].length; j++ ) {
+      System.out.println(mineField[i][j].getBombStatus());
+    }
+  }
 	
+/*
 	//Loop through and run game logic
 	while(true) {
 		//Gets the user input and input location and stores them in that order in a list of ints
@@ -41,4 +48,5 @@ public static void main(String[] args){
 			gameOver(1);
 		}
 	}
+*/
 }

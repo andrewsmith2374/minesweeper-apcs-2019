@@ -15,11 +15,28 @@ public class GridSquare {
 		this.bomb = false;
 	}
 	
-	//Constructor
-	public GridSquare(boolean bomb, int squareLength, int squareWidth){
+	//Constructors
+	public GridSquare(int squareLength, int squareWidth, int xCoord, int yCoord){
+		this.squareLength = squareLength;
+		this.squareWidth = squareWidth;
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
+	}
+	
+	public GridSquare(boolean bomb, int squareLength, int squareWidth, int xCoord, int yCoord){
 		this.bomb = bomb;
 		this.squareLength = squareLength;
 		this.squareWidth = squareWidth;
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
+	}
+	
+	//Printing object
+	public String toString() {
+		if(this.bomb) {
+			return "Bomb";
+		}
+		return "" + this.bombsNearby;
 	}
 	
 	//Return the width of the tile
@@ -69,9 +86,9 @@ public class GridSquare {
 	}
 
 	//Sets the number of bombs around the tile
-	public void assignNumber(GridSquare[][] minefield) {
+	public void assignNumber(GridSquare[][] mineField) {
 		//Declare variables
-		int startingX /*The starting column*/, endingX /*The ending column*/, startingY/*The starting row*/, endingY /*The ending row*/, bombsNearby /*The number of bombs nearby*/;0
+		int startingX /*The starting column*/, endingX /*The ending column*/, startingY/*The starting row*/, endingY /*The ending row*/, bombsNearby /*The number of bombs nearby*/;
 		GridSquare tile /*Individual mine*/;
 
 		//Establish variables
@@ -91,16 +108,17 @@ public class GridSquare {
 		if(endingY >= mineField.length) {
 			endingY = mineField.length - 1;
 		}
+    	bombsNearby = 0;
 		
-		if(this.getBombStatus) {
-			this.setBombStatus(0);
+		if(this.getBombStatus()) {
+			this.bombsNearby = 0;
 		}
 		else {
 			//Go through top and bottom
 			for(int row = startingX; row < endingX; row++) {
 				for(int column = startingY; column < endingY; column++) {
 					tile = mineField[row][column];
-					if(tile.getBombStatus) {
+					if(tile.getBombStatus()) {
 						bombsNearby++;
 					}
 				}
