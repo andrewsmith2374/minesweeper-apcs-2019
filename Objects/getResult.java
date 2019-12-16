@@ -7,15 +7,24 @@ public class getResult {
 	
 		//Get the x and y coordinates of the location
 		yCoord = location / mineField.length;
-		xCoord = location % yCoord;
+    if(yCoord > 0) {
+		  xCoord = location % yCoord;
+    }
+    xCoord = location;
 	
 		//Store the mine pressed
 		tile = mineField[yCoord][xCoord];
 	
 		//Find what happens! This is where the fun begins
-		if(tile.getBombStatus()) {
-			return "lose";
-		}
-		return "safe";
+    if(input == 0) { //Right click
+      tile.flag();
+      return "safe";
+    }
+    else { //Left click
+      if(tile.getBombStatus()) {
+      return "lose";
+      }
+      return "safe";
+    }
 	}
 }

@@ -4,7 +4,6 @@ void setup(){
   fill(255, 255);
   f = createFont("Arial",16,true);
 
-
   //Declare variables
     String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
     int length /*Length of the board*/, width /*Width of the board*/, numBombs /*Number of boms*/,
@@ -19,7 +18,7 @@ void setup(){
     //Create the grid
     length = 20;
     width = 20;
-    numBombs = 30;
+    numBombs = 159;
     mineField = makeGrid.makeGrid(mineField, numBombs); //Done
         
     squaresLeft = length * width;
@@ -32,34 +31,40 @@ void setup(){
     
     System.out.println("Stop");
   
-  /*
+  
+    int x = 0;
+    
     //Loop through and run game logic
-    while(true) {
+    while(x < 1) {
       //Gets the user input and input location and stores them in that order in a list of ints
-      inputAndLocation = getUserInputAndLocation();
-      userInput = inputAndLocation[0];
-      location = inputAndLocation[1];
+      //inputAndLocation = getUserInputAndLocation();
+      //userInput = inputAndLocation[0];
+      //location = inputAndLocation[1];
+      
+      userInput = 0;
+      location = 1;
     
       //Run game logic on their choice
-      nextMove = getResult(mineField, userInput, location); //Done
-      if(nextMove = "safe") {
+      nextMove = getResult.getResult(mineField, userInput, location); //Done
+      if(nextMove.equals("safe")) {
         squaresLeft--;
       }
     
       //Update board and return as mineField
-      mineField = updateBoard(mineField, nextMove, userInput, location); //Done?
-      drawBoard(mineField);
+      mineField = updateBoard.updateBoard(mineField, nextMove, userInput, location); //Done?
+      draw();
     
       if(nextMove.equals("lost")) {
         //End game
-        gameOver(0);
+        GameOver.gameOver(0);
       }
       else if(squaresLeft == 0) {
         //End game
-        gameOver(1);
+        GameOver.gameOver(1);
       }
+      x++;
     }
-  */
+  
 }
 void draw(){
   fill(255);

@@ -9,6 +9,7 @@ public class GridSquare {
 	
 	boolean bomb = false; //Status of the square, whether it is a bomb or not
 	boolean shown = false; //The shown state of the bomb
+  boolean flagged = false;
 	
 	//Default constructor
 	public GridSquare(){
@@ -85,6 +86,11 @@ public class GridSquare {
 		return this.bombsNearby;
 	}
 
+  //Flags the tile
+  public void flag() {
+    this.flagged = true;
+  }
+
 	//Sets the number of bombs around the tile
 	public void assignNumber(GridSquare[][] mineField) {
 		//Declare variables
@@ -111,7 +117,7 @@ public class GridSquare {
     	bombsNearby = 0;
 		
 		if(this.getBombStatus()) {
-			this.bombsNearby = 0;
+			this.bombsNearby = 9;
 		}
 		else {
 			//Go through top and bottom
