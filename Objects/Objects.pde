@@ -52,7 +52,7 @@ void setup(){
     
       //Update board and return as mineField
       mineField = updateBoard.updateBoard(mineField, nextMove, userInput, location); //Done?
-      draw();
+      draw()
     
       if(nextMove.equals("lost")) {
         //End game
