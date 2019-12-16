@@ -1,6 +1,9 @@
+PFont f;
 void setup(){
   size(600, 600);
   fill(255, 255);
+  f = createFont("Arial",16,true);
+
 
   //Declare variables
     String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
@@ -59,11 +62,15 @@ void setup(){
   */
 }
 void draw(){
+  fill(255);
   for(int i = 0; i < 20; i++){
     for(int j = 0; j < 20; j++){
       rect(30 * i, 30 * j, 30, 30);
     }
   }
+  textFont(f,16);
+  fill(0);
+  text("1", 11, 21);
 }/*
 public class Objects {
 	public static void main(String[] args){
