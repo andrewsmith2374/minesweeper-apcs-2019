@@ -22,7 +22,8 @@ public static class Grid(){
 	
 	for(int row = 0; i < mineField.length; row++) {
 		for(int col = 0; col < mineField[0].length; col++) {
-			mineField[row][col] = assignNumber(mineField, row, col);
+			mineField[row][col].setCoordinates(row, col);
+			mineField[row][col].assignNumber(mineField);
 		}
 	}
 	
