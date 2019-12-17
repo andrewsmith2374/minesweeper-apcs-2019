@@ -17,7 +17,7 @@ void setup() {
     location = 0 /*Stores the location of the last square the player clicked*/, 
     squaresLeft /*Stores the number of blank squares left*/, 
     xVal = 0 /*Stores the x-coordinate of the mouse click*/, yVal = 0 /*Stores the y-coordinate of the mouse click*/;
-  boolean inputReady = false /*Ready to take input*/, inputTaken = false /*Input has been taken*/;
+  boolean inputReady = true /*Ready to take input*/;
 
   System.out.println("Start");
 
@@ -38,51 +38,48 @@ void setup() {
 
   System.out.println("Stop");
 
-  draw();
+  //Loop through and run game logic
+  while (true) {
+    //Gets the user input and input location and stores them in that order in a list of ints
+    mouseClicked = false;
+    inputReady = true;
 
-  if (mouseClicked) {
-    //Loop through and run game logic
-    while (true) {
-      //Gets the user input and input location and stores them in that order in a list of ints
-      inputReady = true;
 
-      //Get user input
-      if (mouseClicked) {
-        System.out.println("Click");
-        if (inputReady) {
-          xVal = mouseX;
-          yVal = mouseY;
-          if (mouseButton == LEFT) {
-            userInput = 0;
-          }
-          if (mouseButton == RIGHT) {
-            userInput = 1;
-          }
-        }
-        location = (yVal / length) * width + (xVal / width);
-        inputReady = false;
-        inputTaken = true;
+    while (!mouseClicked) {
+      mouseClicked = false;
+    }
+
+
+    //Get user input
+    if (mouseClicked) {
+      System.out.println("Input ready");
+      xVal = mouseX;
+      yVal = mouseY;
+      if (mouseButton == LEFT) {
+        userInput = 0;
       }
-
-      if (inputTaken) {
-        //Run game logic on their choice
-        nextMove = getResult.getResult(mineField, userInput, location); //Done
-        if (nextMove.equals("safe")) {
-          squaresLeft--;
-        }
-
-        //Update board and return as mineField
-        mineField = updateBoard.updateBoard(mineField, nextMove, userInput, location); //Done?
-
-        if (nextMove.equals("lost")) {
-          //End game
-          GameOver.gameOver(0);
-        } else if (squaresLeft == 0) {
-          //End game
-          GameOver.gameOver(1);
-        }
+      if (mouseButton == RIGHT) {
+        userInput = 1;
       }
-      inputTaken = false;
+    }
+    location = (yVal / length) * width + (xVal / width);
+    inputReady = false;
+
+    //Run game logic on their choice
+    nextMove = getResult.getResult(mineField, userInput, location); //Done
+    if (nextMove.equals("safe")) {
+      squaresLeft--;
+    }
+
+    //Update board and return as mineField
+    mineField = updateBoard.updateBoard(mineField, userInput, location); //Done?
+
+    if (nextMove.equals("lost")) {
+      //End game
+      GameOver.gameOver(0);
+    } else if (squaresLeft == 0) {
+      //End game
+      GameOver.gameOver(1);
     }
   }
 }
@@ -97,13 +94,9 @@ void draw() {
   textFont(f, 16);
   fill(0);
   text("1", 11, 21);
-}/*
-public class Objects {
- 	public static void main(String[] args){
- 		
- 	}
- }*/
+}
 
-void mouseClicked() {
+void mousePressed() {
   mouseClicked = true;
+  System.out.println("Click");
 }
