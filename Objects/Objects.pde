@@ -1,5 +1,11 @@
 PFont f;
+
+boolean mouseClicked = false;
+
 void setup() {
+  int fieldLength = 600;
+  int fieldWidth = 600;
+
   size(600, 600);
   fill(255, 255);
   f = createFont("Arial", 16, true);
@@ -7,11 +13,11 @@ void setup() {
   //Declare variables
   String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
   int length /*Length of the board*/, width /*Width of the board*/, numBombs /*Number of boms*/, 
-    userInput /*Store the user input as either 0 (step) or 1 (flag)*/, 
-    location /*Stores the location of the last square the player clicked*/, 
-    squaresLeft /*Stores the number of blank squares left*/;
-  boolean inputReady;
-  GridSquare[][] mineField = new GridSquare[20][20];
+    userInput = 0 /*Store the user input as either 0 (step) or 1 (flag)*/, 
+    location = 0 /*Stores the location of the last square the player clicked*/, 
+    squaresLeft /*Stores the number of blank squares left*/, 
+    xVal = 0 /*Stores the x-coordinate of the mouse click*/, yVal = 0 /*Stores the y-coordinate of the mouse click*/;
+  boolean inputReady = false /*Ready to take input*/, inputTaken = false /*Input has been taken*/;
 
   System.out.println("Start");
 
@@ -19,6 +25,7 @@ void setup() {
   length = 20;
   width = 20;
   numBombs = 159;
+  GridSquare[][] mineField = new GridSquare[length][width];
   mineField = makeGrid.makeGrid(mineField, numBombs); //Done
 
   squaresLeft = length * width;
@@ -31,39 +38,55 @@ void setup() {
 
   System.out.println("Stop");
 
+  draw();
 
-  int x = 0;
+  if (mouseClicked) {
+    //Loop through and run game logic
+    while (true) {
+      //Gets the user input and input location and stores them in that order in a list of ints
+      inputReady = true;
 
-  //Loop through and run game logic
-  while (x < 1) {
-    //Gets the user input and input location and stores them in that order in a list of ints
-    inputReady = true;
-    //userInput = inputAndLocation[0];
-    //location = inputAndLocation[1];
+      //Get user input
+      if (mouseClicked) {
+        System.out.println("Click");
+        if (inputReady) {
+          xVal = mouseX;
+          yVal = mouseY;
+          if (mouseButton == LEFT) {
+            userInput = 0;
+          }
+          if (mouseButton == RIGHT) {
+            userInput = 1;
+          }
+        }
+        location = (yVal / length) * width + (xVal / width);
+        inputReady = false;
+        inputTaken = true;
+      }
 
-    userInput = 0;
-    location = 1;
+      if (inputTaken) {
+        //Run game logic on their choice
+        nextMove = getResult.getResult(mineField, userInput, location); //Done
+        if (nextMove.equals("safe")) {
+          squaresLeft--;
+        }
 
-    //Run game logic on their choice
-    nextMove = getResult.getResult(mineField, userInput, location); //Done
-    if (nextMove.equals("safe")) {
-      squaresLeft--;
+        //Update board and return as mineField
+        mineField = updateBoard.updateBoard(mineField, nextMove, userInput, location); //Done?
+
+        if (nextMove.equals("lost")) {
+          //End game
+          GameOver.gameOver(0);
+        } else if (squaresLeft == 0) {
+          //End game
+          GameOver.gameOver(1);
+        }
+      }
+      inputTaken = false;
     }
-
-    //Update board and return as mineField
-    mineField = updateBoard.updateBoard(mineField, nextMove, userInput, location); //Done?
-    draw();
-
-    if (nextMove.equals("lost")) {
-      //End game
-      GameOver.gameOver(0);
-    } else if (squaresLeft == 0) {
-      //End game
-      GameOver.gameOver(1);
-    }
-    x++;
   }
 }
+
 void draw() {
   fill(255);
   for (int i = 0; i < 20; i++) {
@@ -80,3 +103,7 @@ public class Objects {
  		
  	}
  }*/
+
+void mouseClicked() {
+  mouseClicked = true;
+}
