@@ -125,9 +125,10 @@ public class GridSquare {
 		}
 		else {
 			//Go through top and bottom
-			for(int row = startingX; row < endingX; row++) {
-				for(int column = startingY; column < endingY; column++) {
+			for(int row = startingY; row <= endingY; row++) {
+				for(int column = startingX; column <= endingX; column++) {
 					tile = mineField[row][column];
+          System.out.println(tile.getBombStatus() + "," + row + "," + column);
 					if(tile.getBombStatus()) {
 						bombsNearby++;
 					}
