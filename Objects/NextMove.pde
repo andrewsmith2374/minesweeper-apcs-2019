@@ -1,4 +1,4 @@
-public class NextMove {
+/*public class NextMove {
   public static void nextMove() {
     //Gets the user input and input location and stores them in that order in a list of ints
     //Get user input
@@ -32,4 +32,4 @@ public class NextMove {
       GameOver.gameOver(1);
     }
   }
-}
+}*/

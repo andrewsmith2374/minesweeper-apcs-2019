@@ -9,7 +9,7 @@ public class makeGrid {
 		//Go through grid, creating new tiles
 		for(int row = 0; row < mineField.length; row++) {
 			for(int col = 0; col < mineField[row].length; col++) {
-				mineField[row][col] = new GridSquare(20, 20, col, row);
+				mineField[row][col] = new GridSquare(30, 30, col, row);
 			}
 		}
 		

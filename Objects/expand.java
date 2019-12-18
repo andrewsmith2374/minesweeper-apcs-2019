@@ -36,7 +36,7 @@ public class expand {
 			for(int column = startingY; column < endingY; column++) {
 				tile = mineField[row][column];
 				if(tile.getBombsNearby() == 0) {
-					expand(mineField, location);
+					//expand(mineField, location);
 				}
 				else {
 					tile.show();

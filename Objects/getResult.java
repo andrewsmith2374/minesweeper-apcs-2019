@@ -2,18 +2,22 @@
 public class getResult {
 	public static String getResult(GridSquare[][] mineField, int input, int location) {
 		//Declare variables
-		int xCoord /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
+		int xCoord = 0 /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
 		GridSquare tile /*Individual mine*/;
 	
 		//Get the x and y coordinates of the location
+
 		yCoord = location / mineField.length;
-    if(yCoord > 0) {
-		  xCoord = location % yCoord;
-    }
-    xCoord = location;
-	
+    xCoord = location % mineField.length;
+    //xCoord = location;
+    //xCoord /= mineField[0].length;
+	  
 		//Store the mine pressed
+    System.out.println(location + ": location");
+    System.out.println(yCoord + ": yCoord");
+    System.out.println(xCoord + ": xCoord");
 		tile = mineField[yCoord][xCoord];
+    tile.show();
 	
 		//Find what happens! This is where the fun begins
     if(input == 0) { //Right click

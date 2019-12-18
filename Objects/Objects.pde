@@ -22,33 +22,47 @@ void setup() {
 }
 
 void draw() {
-  fill(255);
-  for (int i = 0; i < 20; i++) {
-    for (int j = 0; j < 20; j++) {
-      rect(30 * i, 30 * j, 30, 30);
+  
+  for (int j = 0; j < 20; j++) {
+    for (int i = 0; i < 20; i++) {
+      if(mineField[i][j].getBombStatus()){
+        fill(0);
+        rect(30 * j, 30 * i, 30, 30);
+      }
+      else{
+        fill(255);
+        rect(30 * j, 30 * i, 30, 30);
+      }
     }
   }
   textFont(f, 16);
   fill(0);
   //text("1", 11, 21);
-  for (int i = 0; i < mineField.length; i++) {
-    for (int j = 0; j < mineField[i].length; j++ ) {
-      if(mineField[i][j].getBombStatus() && mineField[i][j].getShownStatus()){
-        //end game
-      }
-      else if(mineField[i][j].getShownStatus()){
-        text(mineField[i][j].getBombsNearby(), i + 11, j + 21);
+  //while(true){
+    for (int j = 0; j < mineField.length; j++) {
+      for (int i = 0; i < mineField[j].length; i++) {
+        if(mineField[i][j].getBombStatus() && mineField[i][j].getShownStatus()){
+          //end game
+        }
+        else if(mineField[i][j].getShownStatus()){
+          System.out.println(mineField[i][j].getBombsNearby() + " bombs nearby");
+          System.out.println(i + ": i");
+          System.out.println(j + ": j");
+          fill(200);
+          rect(30 * j, 30 * i, 30, 30);
+          fill(0);
+          text(mineField[i][j].getBombsNearby(), 30 * j + 11, 30 * i + 21);
+
+        }
       }
     }
-  }
+  //}
 }/*
 public class Objects {
  	public static void main(String[] args){
  		
  	}
  }*/
-  text("1", 11, 21);
-}
 
 void mousePressed() {
   nextMove(mouseX, mouseY, mouseButton, mineField);
@@ -60,7 +74,7 @@ public static void nextMove(int mouseX, int mouseY, int mouseButton, GridSquare[
   String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
   int userInput = 0 /*Store the user input as either 0 (step) or 1 (flag)*/, 
     location = 0 /*Stores the location of the last square the player clicked*/, 
-    squaresLeft /*Stores the number of blank squares left*/, 
+    squaresLeft = 400 /*Stores the number of blank squares left*/, 
     xVal = 0 /*Stores the x-coordinate of the mouse click*/, yVal = 0 /*Stores the y-coordinate of the mouse click*/,
     length = mineField.length, width = mineField[0].length;
   boolean inputReady = true /*Ready to take input*/;
@@ -74,7 +88,7 @@ public static void nextMove(int mouseX, int mouseY, int mouseButton, GridSquare[
   if (mouseButton == RIGHT) {
     userInput = 1;
   }
-  location = (yVal / length) * width + (xVal / width);
+  location = (yVal / 30) * width + (xVal / 30);
   inputReady = false;
   System.out.println(location);
 
