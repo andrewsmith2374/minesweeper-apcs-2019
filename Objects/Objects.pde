@@ -30,7 +30,6 @@ void draw() {
   }
   textFont(f, 16);
   fill(0);
-<<<<<<< HEAD
   //text("1", 11, 21);
   for (int i = 0; i < mineField.length; i++) {
     for (int j = 0; j < mineField[i].length; j++ ) {
@@ -48,7 +47,6 @@ public class Objects {
  		
  	}
  }*/
-=======
   text("1", 11, 21);
 }
 
@@ -78,9 +76,7 @@ public static void nextMove(int mouseX, int mouseY, int mouseButton, GridSquare[
   }
   location = (yVal / length) * width + (xVal / width);
   inputReady = false;
-
   System.out.println(location);
->>>>>>> 0ed988b38b69f6d357651d55e1c9754db39cde8b
 
   //Run game logic on their choice
   nextMove = getResult.getResult(mineField, userInput, location); //Done
