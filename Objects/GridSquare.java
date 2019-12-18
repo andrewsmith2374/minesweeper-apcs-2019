@@ -8,7 +8,7 @@ public class GridSquare {
 	int bombsNearby; //Number of bombs directly adjacent to this tile
 	
 	boolean bomb = false; //Status of the square, whether it is a bomb or not
-	boolean shown = false; //The shown state of the bomb
+	boolean shown = true; //The shown state of the bomb
   boolean flagged = false;
 	
 	//Default constructor
@@ -85,6 +85,10 @@ public class GridSquare {
 	public int getBombsNearby() {
 		return this.bombsNearby;
 	}
+
+  public boolean getShownStatus(){
+    return this.shown;
+  }
 
   //Flags the tile
   public void flag() {
