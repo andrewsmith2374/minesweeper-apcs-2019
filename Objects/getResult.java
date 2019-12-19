@@ -20,7 +20,12 @@ public class getResult {
 	
 		//Find what happens! This is where the fun begins
     if(input == 1) { //Right click
-      tile.flag();
+      if(tile.getFlagStatus()){
+        tile.takeAwayFlag();
+      }
+      else{
+        tile.flag();
+      }
       return "safe";
     }
     else { //Left click

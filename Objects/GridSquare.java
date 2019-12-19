@@ -94,6 +94,9 @@ public class GridSquare {
   public void flag() {
     this.flagged = true;
   }
+  public void takeAwayFlag(){
+    this.flagged = false;
+  }
   
   public boolean getFlagStatus(){
     return this.flagged;
