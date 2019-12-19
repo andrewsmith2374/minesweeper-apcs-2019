@@ -8,7 +8,6 @@ public class expand {
 
     //Get the x and y coordinates of the location
     yCoord = location / mineField.length;
-
     xCoord = location % mineField.length;
 
     //Establish variables

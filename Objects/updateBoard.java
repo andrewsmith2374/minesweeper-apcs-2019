@@ -16,8 +16,11 @@ public class updateBoard {
 
     if (tile.getBombsNearby() == 0 && !tile.getBombStatus()) {
       expand.expand(mineField, location);
-    } else {
+    } else if(!tile.getFlagStatus()){
       tile.show();
+    }
+    else{
+      tile.flag();
     }
     return mineField;
   }
