@@ -9,10 +9,12 @@ public class expand {
     //Get the x and y coordinates of the location
     yCoord = location / mineField.length;
     if (yCoord > 0) {
-      xCoord = location % yCoord;
+      xCoord = location % mineField.length;
     }
+    else {
     xCoord = location;
-
+    }
+    
     //Establish variables
     startingX = xCoord - 1;
     startingY = yCoord - 1;
@@ -31,21 +33,20 @@ public class expand {
       endingY = mineField.length - 1;
     }
     
-    System.out.print(startingX + " " + endingX + "\n" + startingY + " " + endingY);
+    System.out.println("Location: " + location + "\nX-coordinate: " + xCoord + " Starting X: " + startingX + " Ending X: " + endingX + "\nY-coordinate: " + yCoord + " StartingY: " + startingY + " EndingY: " + endingY);
 
-/*
     //Go through top and bottom
     for (int row = startingY; row <= endingY; row++) {
       for (int column = startingX; column <= endingX; column++) {
-        tile = mineField[row][column];
-        location = row * mineField.length + column;
-        if (tile.getBombsNearby() == 0 && !tile.getShownStatus()) {
-          expand(mineField, location);
-        } else {
+        if (!(row == yCoord && column == xCoord)) {
+          tile = mineField[row][column];
           tile.show();
+          location = row * mineField.length + column;
+          if (tile.getBombsNearby() == 0 && !tile.getShownStatus()) {
+            expand(mineField, location);
+          }
         }
       }
     }
-    */
   }
 }
