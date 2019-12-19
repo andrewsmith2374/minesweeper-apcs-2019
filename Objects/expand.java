@@ -18,38 +18,34 @@ public class expand {
     startingY = yCoord - 1;
     endingX = xCoord + 1;
     endingY = yCoord + 1;
-    if (startingX <= 0) {
+    if (xCoord <= 0) {
       startingX = 0;
     }
-    if (startingY <= 0) {
+    if (yCoord <= 0) {
       startingY = 0;
     }
-    if (endingX >= mineField.length) {
+    if (xCoord >= mineField.length - 1) {
       endingX = mineField.length - 1;
     }
-    if (endingY >= mineField.length) {
+    if (yCoord >= mineField.length - 1) {
       endingY = mineField.length - 1;
     }
+    
+    System.out.print(startingX + " " + endingX + "\n" + startingY + " " + endingY);
 
+/*
     //Go through top and bottom
-    for (int row = startingY; row < endingY; row++) {
-      for (int column = startingX; column < endingX; column++) {
+    for (int row = startingY; row <= endingY; row++) {
+      for (int column = startingX; column <= endingX; column++) {
         tile = mineField[row][column];
-        if(tile.getBombsNearby() == 0 && !tile.getShownStatus()){
-          tile.show();
-          System.out.println("expanding");
-          expand(mineField, row * mineField.length + column);
-          System.out.println("done expanding");
-        }
-        else{
-          tile.show();
-        }
-        /*if(tile.getBombsNearby() == tile.bombsShownNearby(mineField)) {
+        location = row * mineField.length + column;
+        if (tile.getBombsNearby() == 0 && !tile.getShownStatus()) {
           expand(mineField, location);
         } else {
           tile.show();
-        }*/
+        }
       }
     }
+    */
   }
 }

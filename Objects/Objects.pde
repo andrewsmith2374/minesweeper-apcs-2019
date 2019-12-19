@@ -67,7 +67,7 @@ void draw() {
     catch (InterruptedException e){
     }
     System.exit(0);*/
-  
+
   }
   
 
@@ -82,7 +82,7 @@ void draw() {
         }
         else if (mineField[i][j].getShownStatus()){
 
-          fill(200);
+          fill(100);
           rect(30 * j, 30 * i, 30, 30);
           if(mineField[i][j].getBombsNearby() == 0){
             expand.expand(mineField, i * mineField.length + j);

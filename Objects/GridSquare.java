@@ -86,43 +86,6 @@ public class GridSquare {
     return this.bombsNearby;
   }
 
-  //Return the number of bombs shown nearby
-  public int bombsShownNearby(GridSquare[][] mineField) {
-    //Declare variables
-    int startingX /*The starting column*/, endingX /*The ending column*/, startingY/*The starting row*/, endingY /*The ending row*/, bombsNearby /*The number of bombs nearby*/;
-    GridSquare tile /*Individual mine*/;
-
-    //Establish variables
-    startingX = this.xCoord - 1;
-    startingY = this.yCoord - 1;
-    endingX = this.xCoord + 1;
-    endingY = this.yCoord + 1;
-    if (startingX <= 0) {
-      startingX = 0;
-    }
-    if (startingY <= 0) {
-      startingY = 0;
-    }
-    if (endingX >= mineField.length) {
-      endingX = mineField.length - 1;
-    }
-    if (endingY >= mineField.length) {
-      endingY = mineField.length - 1;
-    }
-    bombsNearby = 0;
-
-    //Go through top and bottom
-    for (int row = startingY; row <= endingY; row++) {
-      for (int column = startingX; column <= endingX; column++) {
-        tile = mineField[row][column];
-        if (tile.getShownStatus()) {
-          bombsNearby++;
-        }
-      }
-    }
-    return bombsNearby;
-  }
-
   public boolean getShownStatus() {
     return this.shown;
   }

@@ -1,25 +1,24 @@
 //Update board with inputs mineField, nextMove, userInput, location and return as updated mineField
 public class updateBoard {
-	public static GridSquare[][] updateBoard(GridSquare[][] mineField, int userInput, int location) {
-		int xCoord = 0 /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
-		GridSquare tile /*Individual mine*/;
-	
-		//Get the x and y coordinates of the location
-		yCoord = location / mineField.length;
+  public static GridSquare[][] updateBoard(GridSquare[][] mineField, int userInput, int location) {
+    int xCoord = 0 /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
+    GridSquare tile /*Individual mine*/;
+
+    //Get the x and y coordinates of the location
+    yCoord = location / mineField.length;
     xCoord = location % mineField.length;
     //xCoord = location;
-        //xCoord /= mineField[0].length;
+    //xCoord /= mineField[0].length;
 
-	
-		//Store the mine pressed
-		tile = mineField[yCoord][xCoord];
-		
-		if(tile.getBombsNearby() == 0) {
-			expand.expand(mineField, location);
-		}
-		else {
-			tile.show();
-		}
+
+    //Store the mine pressed
+    tile = mineField[yCoord][xCoord];
+
+    if (tile.getBombsNearby() == 0) {
+      expand.expand(mineField, location);
+    } else {
+      tile.show();
+    }
     return mineField;
-	}
+  }
 }
