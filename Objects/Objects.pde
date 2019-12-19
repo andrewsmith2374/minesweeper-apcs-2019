@@ -82,6 +82,10 @@ void draw() {
             text(mineField[i][j].getBombsNearby(), 30 * j + 11, 30 * i + 21);
           }
         }
+        if(mineField[i][j].getFlagStatus()){
+          fill(255, 0, 0);
+          rect(30 * j, 30 * i, 30, 30);
+        }
       }
     }
     

@@ -132,6 +132,10 @@ public class GridSquare {
   public void flag() {
     this.flagged = true;
   }
+  
+  public boolean getFlagStatus(){
+    return this.flagged;
+  }
 
   //Sets the number of bombs around the tile
   public void assignNumber(GridSquare[][] mineField) {
