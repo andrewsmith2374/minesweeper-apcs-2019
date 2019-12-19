@@ -32,15 +32,23 @@ public class expand {
     }
 
     //Go through top and bottom
-    for (int row = startingX; row < endingX; row++) {
-      for (int column = startingY; column < endingY; column++) {
+    for (int row = startingY; row < endingY; row++) {
+      for (int column = startingX; column < endingX; column++) {
         tile = mineField[row][column];
-        if (tile.getBombsNearby() - tile.bombsShownNearby(mineField) == 0) {
-          System.out.println("Expanding");
+        if(tile.getBombsNearby() == 0 && !tile.getShownStatus()){
+          tile.show();
+          System.out.println("expanding");
+          expand(mineField, row * mineField.length + column);
+          System.out.println("done expanding");
+        }
+        else{
+          tile.show();
+        }
+        /*if(tile.getBombsNearby() == tile.bombsShownNearby(mineField)) {
           expand(mineField, location);
         } else {
           tile.show();
-        }
+        }*/
       }
     }
   }

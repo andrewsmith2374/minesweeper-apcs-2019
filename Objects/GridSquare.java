@@ -115,7 +115,6 @@ public class GridSquare {
     for (int row = startingY; row <= endingY; row++) {
       for (int column = startingX; column <= endingX; column++) {
         tile = mineField[row][column];
-        System.out.println(tile.getBombStatus() + "," + row + "," + column);
         if (tile.getShownStatus()) {
           bombsNearby++;
         }

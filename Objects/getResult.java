@@ -14,9 +14,7 @@ public class getResult {
     //xCoord /= mineField[0].length;
 	  
 		//Store the mine pressed
-    System.out.println(location + ": location");
-    System.out.println(yCoord + ": yCoord");
-    System.out.println(xCoord + ": xCoord");
+
 		tile = mineField[yCoord][xCoord];
     
 	

@@ -24,7 +24,7 @@ void setup() {
 static boolean bombClicked = false;
 static int bomb_i = -1;
 static int bomb_j = -1;
-    
+static boolean lostGame = false;
 void draw() {
   textFont(f, 16);
   fill(0);
@@ -40,15 +40,26 @@ void draw() {
   }
   else
   {
-    for (int k = 0; k < 20; k++) {
-       for (int l = 0; l < 20; l++) {
+    if(!lostGame){
+      for (int k = 0; k < 20; k++) {
+         for (int l = 0; l < 20; l++) {
            if(mineField[k][l].getBombStatus()){
-                  fill(0);
-                  rect(30 * l, 30 * k, 30, 30);
+              fill(0);
+              rect(30 * l, 30 * k, 30, 30);
            }
-        }
-        fill(255);
-        text("X", 30 * bomb_j + 11, 30 * bomb_i + 21);
+           else if(mineField[k][l].getShownStatus()){
+             fill(200);
+             rect(30 * l, 30 * k, 30, 30);
+             if(mineField[k][l].getBombsNearby() != 0){
+               fill(0);
+               text(mineField[k][l].getBombsNearby(), 30 * l + 11, 30 * k + 21);
+             }
+             lostGame = true;
+           }
+         }
+      }
+      fill(255);
+      text("X", 30 * bomb_j + 11, 30 * bomb_i + 21);
     }/*
     try {
       Thread.sleep(3000);
@@ -70,12 +81,11 @@ void draw() {
             bomb_j = j;
         }
         else if (mineField[i][j].getShownStatus()){
-          System.out.println(mineField[i][j].getBombsNearby() + " bombs nearby");
-          System.out.println(i + ": i");
-          System.out.println(j + ": j");
+
           fill(200);
           rect(30 * j, 30 * i, 30, 30);
           if(mineField[i][j].getBombsNearby() == 0){
+            expand.expand(mineField, i * mineField.length + j);
           }
           else{
             fill(0);
