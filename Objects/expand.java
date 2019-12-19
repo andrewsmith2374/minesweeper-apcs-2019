@@ -3,18 +3,13 @@ public class expand {
   public static void expand(GridSquare[][] mineField, int location) {
     //Declare variables
     int startingX /*The starting column*/, endingX /*The ending column*/, startingY/*The starting row*/, endingY /*The ending row*/, 
-      xCoord /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
+      xCoord/*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
     GridSquare tile /*Individual mine*/;
 
     //Get the x and y coordinates of the location
     yCoord = location / mineField.length;
-    if (yCoord > 0) {
-      xCoord = location % mineField.length;
-    }
-    else {
-    xCoord = location;
-    }
-    
+    xCoord = location % mineField.length;
+
     //Establish variables
     startingX = xCoord - 1;
     startingY = yCoord - 1;
@@ -32,7 +27,7 @@ public class expand {
     if (yCoord >= mineField.length - 1) {
       endingY = mineField.length - 1;
     }
-    
+
     System.out.println("Location: " + location + "\nX-coordinate: " + xCoord + " Starting X: " + startingX + " Ending X: " + endingX + "\nY-coordinate: " + yCoord + " StartingY: " + startingY + " EndingY: " + endingY);
 
     //Go through top and bottom

@@ -14,7 +14,7 @@ public class updateBoard {
     //Store the mine pressed
     tile = mineField[yCoord][xCoord];
 
-    if (tile.getBombsNearby() == 0) {
+    if (tile.getBombsNearby() == 0 && !tile.getBombStatus()) {
       expand.expand(mineField, location);
     } else {
       tile.show();
