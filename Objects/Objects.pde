@@ -17,7 +17,7 @@ void setup() {
   //Create the grid
   length = 20;
   width = 20;
-  numBombs = 100;
+  numBombs = 50;
   mineField = makeGrid.makeGrid(mineField, numBombs); //Done
 }
 
@@ -25,11 +25,12 @@ static boolean bombClicked = false;
 static int bomb_i = -1;
 static int bomb_j = -1;
 static boolean lostGame = false;
+
 void draw() {
   textFont(f, 16);
   fill(0);
-  //text("1", 11, 21);
-  //while(true){
+
+//draw the board
   if(bombClicked == false){
     for (int j = 0; j < 20; j++) {
       for (int i = 0; i < 20; i++) {
@@ -38,17 +39,23 @@ void draw() {
       }
     }
   }
+  
+  //draw all shown tiles and flags after losing
   else
   {
     if(!lostGame){
       for (int k = 0; k < 20; k++) {
          for (int l = 0; l < 20; l++) {
+           
+           //draw out bombs
            if(mineField[k][l].getBombStatus()){
               fill(0);
               rect(30 * l, 30 * k, 30, 30);
            }
+           
+           //draw shown tiles and number of bombs
            else if(mineField[k][l].getShownStatus()){
-             fill(200);
+             fill(100);
              rect(30 * l, 30 * k, 30, 30);
              if(mineField[k][l].getBombsNearby() != 0){
                fill(0);
@@ -58,94 +65,48 @@ void draw() {
            }
          }
       }
+      
+      
       fill(255);
       text("X", 30 * bomb_j + 11, 30 * bomb_i + 21);
-    }/*
-    try {
-      Thread.sleep(3000);
     }
-    catch (InterruptedException e){
-    }
-    System.exit(0);*/
 
   }
   
 
-
-    for (int j = 0; j < mineField.length && !bombClicked; j++) {
-      for (int i = 0; i < mineField[j].length && !bombClicked; i++) {
-        if (mineField[i][j].getBombStatus() && mineField[i][j].getShownStatus())
-        {
-            bombClicked = true;
-            bomb_i = i;
-            bomb_j = j;
+//update gameboard with shown tiles and flags
+  for (int j = 0; j < mineField.length && !bombClicked; j++) {
+    for (int i = 0; i < mineField[j].length && !bombClicked; i++) {
+      
+      // if clicked on bomb, set bombClicked to true
+      if (mineField[i][j].getBombStatus() && mineField[i][j].getShownStatus())
+      {
+          bombClicked = true;
+          bomb_i = i;
+          bomb_j = j;
+      }
+      
+      //draw shown tiles
+      else if (mineField[i][j].getShownStatus()){
+        fill(100);
+        rect(30 * j, 30 * i, 30, 30);
+        if(mineField[i][j].getBombsNearby() == 0){
+          expand.expand(mineField, i * mineField.length + j);
         }
-        else if (mineField[i][j].getShownStatus()){
-
-          fill(100);
-          rect(30 * j, 30 * i, 30, 30);
-          if(mineField[i][j].getBombsNearby() == 0){
-            expand.expand(mineField, i * mineField.length + j);
-          }
-          else{
-            fill(0);
-            text(mineField[i][j].getBombsNearby(), 30 * j + 11, 30 * i + 21);
-          }
-        }
-        if(mineField[i][j].getFlagStatus()){
-          fill(255, 0, 0);
-          rect(30 * j, 30 * i, 30, 30);
+        else{
+          fill(0);
+          text(mineField[i][j].getBombsNearby(), 30 * j + 11, 30 * i + 21);
         }
       }
+      
+      //draw flags
+      if(mineField[i][j].getFlagStatus()){
+        fill(255, 0, 0);
+        rect(30 * j, 30 * i, 30, 30);
+      }
     }
-    
-        
-       /* if(mineField[i][j].getBombStatus() && mineField[i][j].getShownStatus()){
-          //end game
-          if(bombClicked == false){
-            for (int k = 0; k < 20; k++) {
-              for (int l = 0; l < 20; l++) {
-                if(mineField[k][l].getBombStatus()){
-                  fill(0);
-                  rect(30 * l, 30 * k, 30, 30);
-                }
-              }
-            }
-            fill(255);
-            text("X", 30 * j + 11, 30 * i + 21);
-            bombClicked = true;
-          }
-          else if(bombClicked == false){
-            try {
-              Thread.sleep(3000);
-            }
-            catch (InterruptedException e){
-            }
-            System.exit(0);
-          }
-        }
-        else if(mineField[i][j].getShownStatus()){
-          System.out.println(mineField[i][j].getBombsNearby() + " bombs nearby");
-          System.out.println(i + ": i");
-          System.out.println(j + ": j");
-          fill(200);
-          rect(30 * j, 30 * i, 30, 30);
-          if(mineField[i][j].getBombsNearby() == 0){
-          }
-          else{
-            fill(0);
-            text(mineField[i][j].getBombsNearby(), 30 * j + 11, 30 * i + 21);
-          }
-        }*/
-      //}
-//    }
-  //}
-}/*
-public class Objects {
- 	public static void main(String[] args){
- 		
- 	}
- }*/
+  }
+}
 
 void mousePressed() {
   nextMove(mouseX, mouseY, mouseButton, mineField);
@@ -165,12 +126,16 @@ public static void nextMove(int mouseX, int mouseY, int mouseButton, GridSquare[
   //Get user input
   xVal = mouseX;
   yVal = mouseY;
+  
+  //Left Click
   if (mouseButton == LEFT) {
     userInput = 0;
   }
-  if (mouseButton == RIGHT) {
+  else if (mouseButton == RIGHT) { //Right Click
     userInput = 1;
   }
+  
+  //set location of mouse cursor
   location = (yVal / 30) * width + (xVal / 30);
   inputReady = false;
   System.out.println(location);

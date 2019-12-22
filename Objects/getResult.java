@@ -22,6 +22,7 @@ public class getResult {
     if(input == 1) { //Right click
       if(tile.getFlagStatus()){
         tile.takeAwayFlag();
+        tile.hide();
       }
       else{
         tile.flag();

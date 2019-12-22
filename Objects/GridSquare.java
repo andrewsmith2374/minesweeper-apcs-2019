@@ -86,6 +86,7 @@ public class GridSquare {
     return this.bombsNearby;
   }
 
+  //Return whether the tile is shown yet
   public boolean getShownStatus() {
     return this.shown;
   }
@@ -94,12 +95,20 @@ public class GridSquare {
   public void flag() {
     this.flagged = true;
   }
+  
+  //Takes away a flag
   public void takeAwayFlag(){
     this.flagged = false;
   }
   
+  //Return whether the tile has been flagged
   public boolean getFlagStatus(){
     return this.flagged;
+  }
+  
+  //hide the tile, un-show
+  public void hide(){
+    this.shown = false;
   }
 
   //Sets the number of bombs around the tile
@@ -127,6 +136,7 @@ public class GridSquare {
     }
     bombsNearby = 0;
 
+    //Assign number of bombs to each tile
     if (this.getBombStatus()) {
       this.bombsNearby = 9;
     } else {
