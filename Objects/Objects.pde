@@ -25,6 +25,8 @@ static boolean bombClicked = false;
 static int bomb_i = -1;
 static int bomb_j = -1;
 static boolean lostGame = false;
+static boolean wonGame = false;
+static int numOfSquares = 0;
 
 void draw() {
   textFont(f, 16);
@@ -43,7 +45,7 @@ void draw() {
   //draw all shown tiles and flags after losing
   else
   {
-    if(!lostGame){
+    if(!lostGame || !wonGame){
       for (int k = 0; k < 20; k++) {
          for (int l = 0; l < 20; l++) {
            
@@ -106,6 +108,25 @@ void draw() {
       }
     }
   }
+  
+  //check to see if the player has won yet
+  loop:
+    for (int j = 0; j < mineField.length && !bombClicked; j++) {
+      for (int i = 0; i < mineField[j].length && !bombClicked; i++) {
+        if(mineField[i][j].getFlagStatus() || mineField[i][j].getShownStatus()){
+          numOfSquares++;
+        }
+        else{
+          break loop;
+        }
+      }
+    }
+    
+  if(numOfSquares == 400){
+    background(0);
+    text("You Win!", 300, 300);
+  }
+
 }
 
 void mousePressed() {
@@ -117,18 +138,17 @@ public static void nextMove(int mouseX, int mouseY, int mouseButton, GridSquare[
   //Declare variables
   String nextMove /*Stores the next move in the game, either "lose" or "safe"*/;
   int userInput = 0 /*Store the user input as either 0 (step) or 1 (flag)*/, 
-    location = 0 /*Stores the location of the last square the player clicked*/, 
-    squaresLeft = 400 /*Stores the number of blank squares left*/, 
-    xVal = 0 /*Stores the x-coordinate of the mouse click*/, yVal = 0 /*Stores the y-coordinate of the mouse click*/,
-    length = mineField.length, width = mineField[0].length;
+  location = 0 /*Stores the location of the last square the player clicked*/, 
+  squaresLeft = 400 /*Stores the number of blank squares left*/, 
+  xVal = 0 /*Stores the x-coordinate of the mouse click*/, yVal = 0 /*Stores the y-coordinate of the mouse click*/,
+  length = mineField.length, width = mineField[0].length;
   boolean inputReady = true /*Ready to take input*/;
 
   //Get user input
   xVal = mouseX;
   yVal = mouseY;
   
-  //Left Click
-  if (mouseButton == LEFT) {
+  if (mouseButton == LEFT) {//Left Click
     userInput = 0;
   }
   else if (mouseButton == RIGHT) { //Right Click

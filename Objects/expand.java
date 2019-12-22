@@ -40,7 +40,7 @@ public class expand {
           tile = mineField[row][column];
           tile.show();
           location = row * mineField.length + column;
-          if (tile.getBombsNearby() == 0 && !tile.getShownStatus()) {
+          if(tile.getBombsNearby() == 0 && !tile.getShownStatus()){
             expand(mineField, location);
           }
         }
