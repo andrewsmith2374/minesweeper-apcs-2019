@@ -117,6 +117,7 @@ void draw() {
           numOfSquares++;
         }
         else{
+          numOfSquares = 0;
           break loop;
         }
       }

@@ -95,7 +95,6 @@ public class GridSquare {
   public void flag() {
     this.flagged = true;
   }
-  
   //Takes away a flag
   public void takeAwayFlag(){
     this.flagged = false;
