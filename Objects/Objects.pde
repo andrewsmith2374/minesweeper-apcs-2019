@@ -15,9 +15,9 @@ void setup() {
   int length /*Length of the board*/, width /*Width of the board*/, numBombs /*Number of boms*/;
 
   //Create the grid
-  length = 20;
-  width = 20;
-  numBombs = 100;
+  length = 40;
+  width = 40;
+  numBombs = 1;
   mineField = makeGrid.makeGrid(mineField, numBombs); //Done
 }
 
