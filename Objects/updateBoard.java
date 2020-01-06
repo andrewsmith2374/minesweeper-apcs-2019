@@ -10,17 +10,14 @@ public class updateBoard {
     //xCoord = location;
     //xCoord /= mineField[0].length;
 
-
     //Store the mine pressed
     tile = mineField[yCoord][xCoord];
 
-    if (tile.getBombsNearby() == 0 && !tile.getBombStatus()) {
-      expand.expand(mineField, location);
-    } else if(!tile.getFlagStatus()){
+    if(userInput == 0) { //Left click
+      if (tile.getBombsNearby() == 0 && !tile.getBombStatus()) {
+        expand.expand(mineField, location);
+      }
       tile.show();
-    }
-    else{
-      tile.flag();
     }
     return mineField;
   }

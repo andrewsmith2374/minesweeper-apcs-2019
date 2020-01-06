@@ -5,7 +5,9 @@ public class getResult {
 		//Declare variables
 		int xCoord = 0 /*The x coordinate of the location*/, yCoord /*The y coordinate of the location*/;
 		GridSquare tile /*Individual mine*/;
-	  
+
+    String gameStatus = "safe"; //Whether the player is safe or lost
+	    
 		//Get the x and y coordinates of the location
 
 		yCoord = location / mineField.length;
@@ -20,15 +22,20 @@ public class getResult {
 	
 		//Find what happens! This is where the fun begins
     if(input == 1) { //Right click
-      tile.flag();
-      return "safe";
+      if(tile.getFlagStatus()){
+        tile.takeAwayFlag();
+        tile.hide();
+      }
+      else{
+        tile.flag();
+      }
     }
     else { //Left click
       tile.show();
       if(tile.getBombStatus()) {
-        return "lose";
+        gameStatus = "lose";
       }
-      return "safe";
     }
+    return gameStatus;
 	}
 }
